@@ -33,7 +33,7 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          'dist/scripts/slick-slides.min.js': ['src/**/*.js']
+          'dist/js/slick-slides.min.js': ['src/**/*.js']
         }
       }
     },
@@ -69,5 +69,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jshint','compass', 'watch']);
+  grunt.registerTask('default', ['jshint','compass', 'watch', 'uglify']);
 };
