@@ -1,46 +1,75 @@
-/* Utility functions
+// testing what would be incoming from json //
+var baseSlide = {
+	'id': 					null,
+	'pretty_id': 			null,
+	'base_template': 		null,
+	'header': 				null,
+	'header_content': 		null,
+	'background_type': 		null,
+	'background_value': 	null,
+	'transition_speed': 	null,
+	'slide_left': 			null,
+	'slide_right': 			null,
+	'slide_up': 			null,
+	'slide_down': 			null,
+	'toggle_options': 		null,
+	'total_options': 		null,
+	'options_location': 	null	
+}
+
+var childSlide = {
+	'primary_type': 		null,
+	'primary_value': 		null,
+	'primary_effect': 		null,
+	'primary_effect_value': null
+}
+
+/* Stores all utility functions and global variables for Slick Slides
 ==============================================================================================*/
 
-// object inheritence code
-function inheritSlide( child, parent ) {
-  	var copyOfParent = Object.create(parent.prototype);
-
-	copyOfParent.constructor = child;
-
-	child.prototype = copyOfParent;
+var slickSlides = {
+	totalSlides: 	null, /* total slides */
+	targetElement: 	null, /* target element to append slides to */
+	inheritSlide:function( child, parent ){
+		//copy props and methods of base slide object
+		var copyOfParent = Object.create(parent.prototype);
+		//set constuctor to subclass object
+		copyOfParent.constructor = child;
+		//make it so parent class can now inherit subclass props and methods
+		child.prototype = copyOfParent;
+	}
 }
+
+
 
 /* Parent object for all slide objects - all slides will inherit from this constructor
 ==============================================================================================*/
-function SlickSlide( id, prettyid, type, variant, dLeft, dRight, dUp, dDown, speed, options, optTot, optLoc, background, backgroundVal, header, headerVal ) {
+function SlickSlide( data ) {
 	//init instance properties
-	this.id = id;
-	this.prettyid = prettyid;
-	this.type = type;
-	this.variant = variant;
+	this.id = 			data['id'];
+	this.prettyid = 	data['pretty_id'];
+	this.type = 		data['base_template'];
+	this.speed = 		data['transition_speed'];
 	this.directions = {
-		left: 	dLeft,
-		right: 	dRight,
-		up: 	dUp,
-		down: 	dDown
+		left: 			data['slide_left'],
+		right: 			data['slide_right'],
+		up: 			data['slide_up'],
+		down: 			data['slide_down']
 	};
-	this.speed = speed;
 	this.background = {
-		type: 	background,
-		value: 	backgroundVal
+		type: 			data['background_type'],
+		value: 			data['background_value']
 	};
-
 	//check if there are options
-	if ( typeof( options ) !== null ){
+	if ( typeof( data['toggle_options'] ) !== null ){
 		this.options = {
-			total: 		optTot,
-			location: 	optLoc
+			total: 		data['total_options'],
+			location: 	data['options_location']
 		};
 	}
-
 	//check if there is a header
-	if ( typeof( header ) !== null ){ 
-		this.header = headerVal; 
+	if ( typeof( data['header'] ) !== null ){ 
+		this.header = 	data['header_content']; 
 	}
 }
 
@@ -48,59 +77,56 @@ function SlickSlide( id, prettyid, type, variant, dLeft, dRight, dUp, dDown, spe
 ==============================================================================================*/
 
 // full template slide
-function SlickSlideFull( test ){
-	SlickSlide.call(this);
+function SlickSlideFull( data, childData ){
+	SlickSlide.call(this, data, childData );
+	this.primarytype = 	childData['primary_type'];
+	this.primarytype = 	childData['primary_value'];
+	this.primarytype = 	childData['primary_effect'];
+	this.primarytype = 	childData['primary_effect_value'];
 }
-inheritSlide( SlickSlideFull, SlickSlide );
+slickSlides.inheritSlide( SlickSlideFull, SlickSlide );
 
 // half template slide
 function SlickSlideHalf(){
-	SlickSlide.call(this);
+	SlickSlide.call(this, data );
 
 }
-inheritSlide( SlickSlideHalf, SlickSlide );
+slickSlides.inheritSlide( SlickSlideHalf, SlickSlide );
 
 // quarter template slide
 function SlickSlideQuarter(){
-	SlickSlide.call(this);
+	SlickSlide.call(this, data );
 
 }
-inheritSlide( SlickSlideQuarter, SlickSlide );
+slickSlides.inheritSlide( SlickSlideQuarter, SlickSlide );
 
 // corner template slide
 function SlickSlideCorner(){
-	SlickSlide.call(this);
+	SlickSlide.call(this, data );
 	
 }
-inheritSlide( SlickSlideCorner, SlickSlide );
+slickSlides.inheritSlide( SlickSlideCorner, SlickSlide );
 
 // triplet template slide
 function SlickSlideTriplet(){
-	SlickSlide.call(this);
+	SlickSlide.call(this, data );
 
 }
-inheritSlide( SlickSlideTriplet, SlickSlide );
+slickSlides.inheritSlide( SlickSlideTriplet, SlickSlide );
 
 // diagonal template slide
 function SlickSlideDiagonal(){
-	SlickSlide.call(this);
+	SlickSlide.call(this, data );
 
 }
-inheritSlide( SlickSlideDiagonal, SlickSlide );
+slickSlides.inheritSlide( SlickSlideDiagonal, SlickSlide );
 
 // circular template slide
 function SlickSlideCircular(){
-	SlickSlide.call(this);
+	SlickSlide.call(this, data );
 	
 }
-inheritSlide( SlickSlideCircular, SlickSlide );
-
-
-//testing
-var slide = [];
-slide[0] = new SlickSlide( 23, 'prettyid', 'full', null, 22, 24, null, null, 1, false, null, null, 'color', '#000', true, 'Hello World' );
-
-
+slickSlides.inheritSlide( SlickSlideCircular, SlickSlide );
 
 
 /*SlickSlide.prototype.getProperty = function(){
