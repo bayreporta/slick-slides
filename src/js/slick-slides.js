@@ -95,51 +95,104 @@ function SlickSlide( data ) {
 // full template slide
 function SlickSlideFull( data, childData ){
 	SlickSlide.call(this, data, childData );
-	this.primarytype = 	childData.primary_type;
-	this.primarytype = 	childData.primary_value;
-	this.primarytype = 	childData.primary_effect;
-	this.primarytype = 	childData.primary_effect_value;
+	this.primary_type 			= childData.primary_type;
+	this.primary_value 			= childData.primary_value;
+	this.primary_effect 		= childData.primary_effect;
+	this.primary_effect_value 	= childData.primary_effect_value;
 }
 slickSlides.inheritSlide( SlickSlideFull, SlickSlide );
-	
+
 // half template slide
 function SlickSlideHalf(){
-	SlickSlide.call(this, data );
+	SlickSlide.call(this, data, childData );
+	this.variant						= childData.variant;
+	this.half_segment_one_type 			= childData.half_segment_one_type;
+	this.half_segment_one_value 		= childData.half_segment_one_value;
+	this.half_segment_one_effect_type 	= childData.half_segment_one_effect_type;
+	this.half_segment_one_effect_value 	= childData.half_segment_one_effect_value;
+	this.half_segment_two_type 			= childData.half_segment_two_type;
+	this.half_segment_two_value 		= childData.half_segment_two_value;
+	this.half_segment_two_effect_type 	= childData.half_segment_two_effect_type;
+	this.half_segment_two_effect_value 	= childData.half_segment_two_effect_value;
 
 }
 slickSlides.inheritSlide( SlickSlideHalf, SlickSlide );
 
 // quarter template slide
 function SlickSlideQuarter(){
-	SlickSlide.call(this, data );
-
+	SlickSlide.call(this, data, childData );
+	this.variant							= childData.variant;
+	this.quarter_segment_one_type 			= childData.quarter_segment_one_type;
+	this.quarter_segment_one_value 			= childData.quarter_segment_one_value;
+	this.quarter_segment_one_effect_type 	= childData.quarter_segment_one_effect_type;
+	this.quarter_segment_one_effect_value 	= childData.quarter_segment_one_effect_value;
+	this.quarter_segment_two_type 			= childData.quarter_segment_two_type;
+	this.quarter_segment_two_value 			= childData.quarter_segment_two_value;
+	this.quarter_segment_two_effect_type 	= childData.quarter_segment_two_effect_type;
+	this.quarter_segment_two_effect_value 	= childData.quarter_segment_two_effect_value;
+	this.quarter_segment_three_type 		= childData.quarter_segment_three_type;
+	this.quarter_segment_three_value 		= childData.quarter_segment_three_value;
+	this.quarter_segment_three_effect_type 	= childData.quarter_segment_three_effect_type;
+	this.quarter_segment_three_effect_value = childData.quarter_segment_three_effect_value;
+	this.quarter_segment_four_type 			= childData.quarter_segment_four_type;
+	this.quarter_segment_four_value 		= childData.quarter_segment_four_value;
+	this.quarter_segment_four_effect_type 	= childData.quarter_segment_four_effect_type;
+	this.quarter_segment_four_effect_value	= childData.quarter_segment_four_effect_value;
 }
 slickSlides.inheritSlide( SlickSlideQuarter, SlickSlide );
 
 // corner template slide
 function SlickSlideCorner(){
-	SlickSlide.call(this, data );
-	
+	SlickSlide.call(this, data, childData );	
+	this.variant				= childData.variant;
+	this.primary_type 			= childData.primary_type;
+	this.primary_value 			= childData.primary_value;
+	this.primary_effect 		= childData.primary_effect;
+	this.primary_effect_value 	= childData.primary_effect_value;
 }
 slickSlides.inheritSlide( SlickSlideCorner, SlickSlide );
 
 // triplet template slide
 function SlickSlideTriplet(){
-	SlickSlide.call(this, data );
-
+	SlickSlide.call(this, data, childData );	
+	this.variant							= childData.variant;
+	this.triplet_segment_one_type 			= childData.triplet_segment_one_type;
+	this.triplet_segment_one_value 			= childData.triplet_segment_one_value;
+	this.triplet_segment_one_effect_type 	= childData.triplet_segment_one_effect_type;
+	this.triplet_segment_one_effect_value 	= childData.triplet_segment_one_effect_value;
+	this.triplet_segment_two_type 			= childData.triplet_segment_two_type;
+	this.triplet_segment_two_value 			= childData.triplet_segment_two_value;
+	this.triplet_segment_two_effect_type 	= childData.triplet_segment_two_effect_type;
+	this.triplet_segment_two_effect_value 	= childData.triplet_segment_two_effect_value;
+	this.triplet_segment_three_type 		= childData.triplet_segment_three_type;
+	this.triplet_segment_three_value 		= childData.triplet_segment_three_value;
+	this.triplet_segment_three_effect_type 	= childData.triplet_segment_three_effect_type;
+	this.triplet_segment_three_effect_value = childData.triplet_segment_three_effect_value;
 }
 slickSlides.inheritSlide( SlickSlideTriplet, SlickSlide );
 
 // diagonal template slide
 function SlickSlideDiagonal(){
-	SlickSlide.call(this, data );
-
+	SlickSlide.call(this, data, childData );	
+	this.variant							= childData.variant;
+	this.diagonal_segment_one_type 			= childData.diagonal_segment_one_type;
+	this.diagonal_segment_one_value 		= childData.diagonal_segment_one_value;
+	this.diagonal_segment_one_effect_type 	= childData.diagonal_segment_one_effect_type;
+	this.diagonal_segment_one_effect_value 	= childData.diagonal_segment_one_effect_value;
+	this.diagonal_segment_two_type 			= childData.diagonal_segment_two_type;
+	this.diagonal_segment_two_value 		= childData.diagonal_segment_two_value;
+	this.diagonal_segment_two_effect_type 	= childData.diagonal_segment_two_effect_type;
+	this.diagonal_segment_two_effect_value 	= childData.diagonal_segment_two_effect_value;
 }
 slickSlides.inheritSlide( SlickSlideDiagonal, SlickSlide );
 
 // circular template slide
 function SlickSlideCircular(){
-	SlickSlide.call(this, data );
+	SlickSlide.call(this, data, childData );	
+	this.primary_type 			= childData.primary_type;
+	this.primary_value 			= childData.primary_value;
+	this.primary_effect 		= childData.primary_effect;
+	this.primary_effect_value 	= childData.primary_effect_value;
 	
 }
 slickSlides.inheritSlide( SlickSlideCircular, SlickSlide );
