@@ -31,9 +31,7 @@ var slickSlides = {
 	slides: 		[],	  	/* will eventually store all the slides */
 	totalSlides: 	null, 	/* total slides */
 	targetElement: 	null, 	/* target element to append slides to */
-	data:{				  	/* imported data */
-		base: 		[] 	  	/* base slide data */
-	},	
+	data:{}, 			  	/* imported data */
 	
 	inheritSlide:function( child, parent ){
 		//copy props and methods of base slide object
@@ -48,8 +46,28 @@ var slickSlides = {
 		$.when(
 			// load base slide data
 			$.getJSON( '/dist/json/slides.json', function(data) {
-        		slickSlides.data.base = data;
-    		})
+        		slickSlides.data['base'] = data;
+    		}),
+    		$.getJSON( '/dist/json/full.json', function(data) {
+        		slickSlides.data['full'] = data;
+    		}),
+    		$.getJSON( '/dist/json/half.json', function(data) {
+        		slickSlides.data['half'] = data;
+    		}),
+    		$.getJSON( '/dist/json/triplet.json', function(data) {
+        		slickSlides.data['triplet'] = data;
+    		}),
+    		$.getJSON( '/dist/json/quarter.json', function(data) {
+        		slickSlides.data['quarter'] = data;
+    		}),
+    		$.getJSON( '/dist/json/corner.json', function(data) {
+        		slickSlides.data['corner'] = data;
+    		}),
+    		$.getJSON( '/dist/json/circular.json', function(data) {
+        		slickSlides.data['circular'] = data;
+    		}),
+    		$.getJSON( '/dist/json/diagonal.json', function(data) {
+        		slickSlides.data['diagonal'] = data;
 		).then(function(){
 			// load next set of functions //
 		});
