@@ -2,7 +2,7 @@
 ==============================================================================================*/
 
 var slickSlides = {
-	target_element: 	null, 	/* target element to append slides to */
+	target_element: null, 	/* target element to append slides to */
 	total_slides: 	null, 	/* total slides */
 	header_font: 	null, 	/* header font for slides */
 	body_font: 		null, 	/* body font for slides */
@@ -65,10 +65,11 @@ var slickSlides = {
 	},
 	//build slide objects based on input
 	createSlides:function( d ){
-		for (var i = 0 ; i < this.total; i--) {
-			switch( d[i].base_template ){
+		for ( var i = 0 ; i < this.total_slides ; i++ ) {
+			var childID = slickSlides.locateChildData( d.slides[i].id, d.slides[i].base_template );
+			switch( d.slides[i].base_template ){
 				case 'full':
-					this.slides.push( SlickSlideFull( d ) );
+					//slickSlides.slides.push( SlickSlideFull( d.slides[i], d.full[childID] ) );
 					break;
 				case 'half':
 					break;
@@ -85,6 +86,16 @@ var slickSlides = {
 			}
 		}
 	},	
+	//locate a slides child data when building
+	locateChildData:function( slideID, template ){
+		var data 	= this.data[template],
+			length 	= data.length;
+		for ( var i = 0 ; i < length ; i++ ){
+			if ( slideID === data[i].id ){
+				return i;
+			}
+		}
+	},
 	//load json files if source of data
 	loadJSON:function( t ){
 		//try to load each json file
@@ -99,7 +110,6 @@ var slickSlides = {
 		    			slickSlides.data[name] = data;
 					},
 					complete:function(data){
-						console.log(pos)
 						slickSlides.JSON_files[pos].object.resolve();
 					}
 				});
@@ -151,8 +161,8 @@ function SlickSlide( data ) {
 ==============================================================================================*/
 
 // full template slide
-function SlickSlideFull( data, childData ){
-	SlickSlide.call(this, data, childData );
+function SlickSlideFull( parentData, childData ){
+	SlickSlide.call(this, parentData, childData );
 	this.primary_type 			= childData.primary_type;
 	this.primary_value 			= childData.primary_value;
 	this.primary_effect 		= childData.primary_effect;
