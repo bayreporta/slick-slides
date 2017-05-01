@@ -69,19 +69,32 @@ var slickSlides = {
 			var childID = slickSlides.locateChildData( d.slides[i].id, d.slides[i].base_template );
 			switch( d.slides[i].base_template ){
 				case 'full':
-					//slickSlides.slides.push( SlickSlideFull( d.slides[i], d.full[childID] ) );
+					var slide = new SlickSlideFull( d.slides[i], d.full[childID] );
+					slickSlides.slides.push( slide );
 					break;
 				case 'half':
+					var slide = new SlickSlideHalf( d.slides[i], d.half[childID] );
+					slickSlides.slides.push( slide );
 					break;
 				case 'triplet':
+					var slide = new SlickSlideTriplet( d.slides[i], d.triplet[childID] );
+					slickSlides.slides.push( slide );
 					break;
 				case 'quarter':
+					var slide = new SlickSlideQuarter( d.slides[i], d.quarter[childID] );
+					slickSlides.slides.push( slide );
 					break;
 				case 'corner':
+					var slide = new SlickSlideCorner( d.slides[i], d.corner[childID] );
+					slickSlides.slides.push( slide );
 					break;
 				case 'diagonal':
+					var slide = new SlickSlideDiagonal( d.slides[i], d.diagonal[childID] );
+					slickSlides.slides.push( slide );
 					break;
 				case 'circular':
+					var slide = new SlickSlideCircular( d.slides[i], d.circular[childID] );
+					slickSlides.slides.push( slide );
 					break;
 			}
 		}
@@ -171,8 +184,8 @@ function SlickSlideFull( parentData, childData ){
 slickSlides.inheritSlide( SlickSlideFull, SlickSlide );
 
 // half template slide
-function SlickSlideHalf(){
-	SlickSlide.call(this, data, childData );
+function SlickSlideHalf( parentData, childData ){
+	SlickSlide.call(this, parentData, childData );
 	this.variant						= childData.variant;
 	this.half_segment_one_type 			= childData.half_segment_one_type;
 	this.half_segment_one_value 		= childData.half_segment_one_value;
@@ -187,8 +200,8 @@ function SlickSlideHalf(){
 slickSlides.inheritSlide( SlickSlideHalf, SlickSlide );
 
 // quarter template slide
-function SlickSlideQuarter(){
-	SlickSlide.call(this, data, childData );
+function SlickSlideQuarter( parentData, childData ){
+	SlickSlide.call(this, parentData, childData );
 	this.variant							= childData.variant;
 	this.quarter_segment_one_type 			= childData.quarter_segment_one_type;
 	this.quarter_segment_one_value 			= childData.quarter_segment_one_value;
@@ -210,8 +223,8 @@ function SlickSlideQuarter(){
 slickSlides.inheritSlide( SlickSlideQuarter, SlickSlide );
 
 // corner template slide
-function SlickSlideCorner(){
-	SlickSlide.call(this, data, childData );	
+function SlickSlideCorner( parentData, childData ){
+	SlickSlide.call(this, parentData, childData );
 	this.variant				= childData.variant;
 	this.primary_type 			= childData.primary_type;
 	this.primary_value 			= childData.primary_value;
@@ -221,8 +234,8 @@ function SlickSlideCorner(){
 slickSlides.inheritSlide( SlickSlideCorner, SlickSlide );
 
 // triplet template slide
-function SlickSlideTriplet(){
-	SlickSlide.call(this, data, childData );	
+function SlickSlideTriplet( parentData, childData ){
+	SlickSlide.call(this, parentData, childData );
 	this.variant							= childData.variant;
 	this.triplet_segment_one_type 			= childData.triplet_segment_one_type;
 	this.triplet_segment_one_value 			= childData.triplet_segment_one_value;
@@ -240,8 +253,8 @@ function SlickSlideTriplet(){
 slickSlides.inheritSlide( SlickSlideTriplet, SlickSlide );
 
 // diagonal template slide
-function SlickSlideDiagonal(){
-	SlickSlide.call(this, data, childData );	
+function SlickSlideDiagonal( parentData, childData ){
+	SlickSlide.call(this, parentData, childData );
 	this.variant							= childData.variant;
 	this.diagonal_segment_one_type 			= childData.diagonal_segment_one_type;
 	this.diagonal_segment_one_value 		= childData.diagonal_segment_one_value;
@@ -255,8 +268,8 @@ function SlickSlideDiagonal(){
 slickSlides.inheritSlide( SlickSlideDiagonal, SlickSlide );
 
 // circular template slide
-function SlickSlideCircular(){
-	SlickSlide.call(this, data, childData );	
+function SlickSlideCircular( parentData, childData ){
+	SlickSlide.call(this, parentData, childData );
 	this.primary_type 			= childData.primary_type;
 	this.primary_value 			= childData.primary_value;
 	this.primary_effect 		= childData.primary_effect;
