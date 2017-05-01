@@ -4,18 +4,46 @@
 var slickSlides = {
 	targetElement: 	null, 	/* target element to append slides to */
 	totalSlides: 	null, 	/* total slides */
-	totalTemplates: 2, 		/* total slide templates */
 	headerFont: 	null, 	/* header font for slides */
 	bodyFont: 		null, 	/* body font for slides */
 	data: 			{}, 	/* imported data */
 	slides: 		[],	  	/* will eventually store all the slides */
-	templates: 		[		/* list of slide templates and deferred objects for json loading */
+	totalJSON: 		9, 		/* total json files to load if not Wordpress */
+	JSONfiles: 		[		/* array of all json that need to be loaded if not Wordress */
 		{
 			name: 'full',
 			object: $.Deferred()
 		},
 		{
 			name: 'half',
+			object: $.Deferred()
+		},
+		{
+			name: 'triplet',
+			object: $.Deferred()
+		},
+		{
+			name: 'quarter',
+			object: $.Deferred()
+		},
+		{
+			name: 'corner',
+			object: $.Deferred()
+		},
+		{
+			name: 'diagonal',
+			object: $.Deferred()
+		},
+		{
+			name: 'circular',
+			object: $.Deferred()
+		},
+		{
+			name: 'master',
+			object: $.Deferred()
+		},
+		{
+			name: 'slides',
 			object: $.Deferred()
 		},
 	],
@@ -59,7 +87,7 @@ var slickSlides = {
 	//load json files if source of data
 	loadJSON:function( t ){
 		//try to load each json file
-		for ( var i = 0 ; i < this.totalTemplates ; i++ ){
+		for ( var i = 0 ; i < this.totalJSON ; i++ ){
 			(function (i){
 				var name 	= t[i].name,
 					pos 	= i;
@@ -70,40 +98,15 @@ var slickSlides = {
 		    			slickSlides.data[name] = data;
 					},
 					complete:function(data){
-						slickSlides.templates[pos].object.resolve();
+						console.log(pos)
+						slickSlides.JSONfiles[pos].object.resolve();
 					}
 				});
 			})(i);
 		};
 
 		$.when(
-			t[slickSlides.totalTemplates - 1].object,
-			$.getJSON( '/dist/json/master.json', function(data) {
-        		slickSlides.data['master'] = data;
-    		}),
-			$.getJSON( '/dist/json/slides.json', function(data) {
-        		slickSlides.data['base'] = data;    		})
-   			
-    		/*$.getJSON( '/dist/json/full.json', function(data) {   
-			}),
-			$.getJSON( '/dist/json/half.json', function(data) {
-	    		slickSlides.data['half'] = data;
-			}),
-			$.getJSON( '/dist/json/triplet.json', function(data) {
-	    		slickSlides.data['triplet'] = data;
-			}),
-			$.getJSON( '/dist/json/quarter.json', function(data) {
-	    		slickSlides.data['quarter'] = data;
-			}),
-			$.getJSON( '/dist/json/corner.json', function(data) {
-	    		slickSlides.data['corner'] = data;
-			}),
-			$.getJSON( '/dist/json/circular.json', function(data) {
-	    		slickSlides.data['circular'] = data;
-			}),
-			$.getJSON( '/dist/json/diagonal.json', function(data) {
-	    		slickSlides.data['diagonal'] = data;
-	    	})    	*/	
+			t[slickSlides.totalJSON - 1].object
 		).then(function(){
 			console.log('done')
 			slickSlides.configureBuild( slickSlides.data.master );
@@ -254,7 +257,7 @@ slickSlides.inheritSlide( SlickSlideCircular, SlickSlide );
 /* Get the slide party started
 ==============================================================================================*/
 $(document).ready(function(){
-	slickSlides.loadJSON( slickSlides.templates );
+	slickSlides.loadJSON( slickSlides.JSONfiles );
 });
 
 
