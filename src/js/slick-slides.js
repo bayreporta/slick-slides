@@ -2,14 +2,14 @@
 ==============================================================================================*/
 
 var slickSlides = {
-	targetElement: 	null, 	/* target element to append slides to */
-	totalSlides: 	null, 	/* total slides */
-	headerFont: 	null, 	/* header font for slides */
-	bodyFont: 		null, 	/* body font for slides */
+	target_element: 	null, 	/* target element to append slides to */
+	total_slides: 	null, 	/* total slides */
+	header_font: 	null, 	/* header font for slides */
+	body_font: 		null, 	/* body font for slides */
 	data: 			{}, 	/* imported data */
 	slides: 		[],	  	/* will eventually store all the slides */
-	totalJSON: 		9, 		/* total json files to load if not Wordpress */
-	JSONfiles: 		[		/* array of all json that need to be loaded if not Wordress */
+	total_JSON: 		9, 		/* total json files to load if not Wordpress */
+	JSON_files: 		[		/* array of all json that need to be loaded if not Wordress */
 		{
 			name: 'full',
 			object: $.Deferred()
@@ -58,9 +58,10 @@ var slickSlides = {
 	},
 	//configure this build of SlickSlides 
 	configureBuild:function( d ){
-		this.targetElement 	= d.target_element; 
-		this.totalSlides 	= d.total_slides;
-		//fonts 
+		var options = d.length;
+		for ( var i = 0 ; i < options ; i++ ){
+			this[d[i].variable] = d[i].value;
+		}	
 	},
 	//build slide objects based on input
 	createSlides:function( d ){
@@ -87,7 +88,7 @@ var slickSlides = {
 	//load json files if source of data
 	loadJSON:function( t ){
 		//try to load each json file
-		for ( var i = 0 ; i < this.totalJSON ; i++ ){
+		for ( var i = 0 ; i < this.total_JSON ; i++ ){
 			(function (i){
 				var name 	= t[i].name,
 					pos 	= i;
@@ -99,16 +100,16 @@ var slickSlides = {
 					},
 					complete:function(data){
 						console.log(pos)
-						slickSlides.JSONfiles[pos].object.resolve();
+						slickSlides.JSON_files[pos].object.resolve();
 					}
 				});
 			})(i);
 		};
 
+		//when all the json are finished loading, executing build scripts
 		$.when(
-			t[slickSlides.totalJSON - 1].object
+			t[slickSlides.total_JSON - 1].object
 		).then(function(){
-			console.log('done')
 			slickSlides.configureBuild( slickSlides.data.master );
 			slickSlides.createSlides( slickSlides.data );
 		});
@@ -120,7 +121,7 @@ var slickSlides = {
 function SlickSlide( data ) {
 	//init instance properties
 	this.id = 			data.id;
-	this.prettyid = 	data.pretty_id;
+	this.pretty_id = 	data.pretty_id;
 	this.type = 		data.base_template;
 	this.speed = 		data.transition_speed;
 	this.directions = {
@@ -257,7 +258,7 @@ slickSlides.inheritSlide( SlickSlideCircular, SlickSlide );
 /* Get the slide party started
 ==============================================================================================*/
 $(document).ready(function(){
-	slickSlides.loadJSON( slickSlides.JSONfiles );
+	slickSlides.loadJSON( slickSlides.JSON_files );
 });
 
 
