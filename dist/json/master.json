@@ -1,0 +1,19 @@
+[
+    {
+        "variable": "target_element",
+        "value": "#container"
+    },
+    {
+        "variable": "total_slides",
+        "value": 13
+    },
+    {
+        "variable": "header_font"
+    },
+    {
+        "variable": "body_font"
+    },
+    {
+        "variable": "typekit_code"
+    }
+]

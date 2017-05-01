@@ -1,38 +1,25 @@
-// testing what would be incoming from json //
-var baseSlide = {
-	'id': 					null,
-	'pretty_id': 			null,
-	'base_template': 		null,
-	'header': 				null,
-	'header_content': 		null,
-	'background_type': 		null,
-	'background_value': 	null,
-	'transition_speed': 	null,
-	'slide_left': 			null,
-	'slide_right': 			null,
-	'slide_up': 			null,
-	'slide_down': 			null,
-	'toggle_options': 		null,
-	'total_options': 		null,
-	'options_location': 	null	
-};
-
-var childSlide = {
-	'primary_type': 		null,
-	'primary_value': 		null,
-	'primary_effect': 		null,
-	'primary_effect_value': null
-};
-
 /* Stores all utility functions and global variables for Slick Slides
 ==============================================================================================*/
 
 var slickSlides = {
-	slides: 		[],	  	/* will eventually store all the slides */
-	totalSlides: 	null, 	/* total slides */
 	targetElement: 	null, 	/* target element to append slides to */
-	data:{}, 			  	/* imported data */
-	
+	totalSlides: 	null, 	/* total slides */
+	totalTemplates: 2, 		/* total slide templates */
+	headerFont: 	null, 	/* header font for slides */
+	bodyFont: 		null, 	/* body font for slides */
+	data: 			{}, 	/* imported data */
+	slides: 		[],	  	/* will eventually store all the slides */
+	templates: 		[		/* list of slide templates and deferred objects for json loading */
+		{
+			name: 'full',
+			object: $.Deferred()
+		},
+		{
+			name: 'half',
+			object: $.Deferred()
+		},
+	],
+
 	inheritSlide:function( child, parent ){
 		//copy props and methods of base slide object
 		var copyOfParent = Object.create(parent.prototype);
@@ -41,40 +28,89 @@ var slickSlides = {
 		//make it so parent class can now inherit subclass props and methods
 		child.prototype = copyOfParent;
 	},
+	//configure this build of SlickSlides 
+	configureBuild:function( d ){
+		this.targetElement 	= d.target_element; 
+		this.totalSlides 	= d.total_slides;
+		//fonts 
+	},
+	//build slide objects based on input
+	createSlides:function( d ){
+		for (var i = 0 ; i < this.total; i--) {
+			switch( d[i].base_template ){
+				case 'full':
+					this.slides.push( SlickSlideFull( d ) );
+					break;
+				case 'half':
+					break;
+				case 'triplet':
+					break;
+				case 'quarter':
+					break;
+				case 'corner':
+					break;
+				case 'diagonal':
+					break;
+				case 'circular':
+					break;
+			}
+		}
+	},	
+	//load json files if source of data
+	loadJSON:function( t ){
+		//try to load each json file
+		for ( var i = 0 ; i < this.totalTemplates ; i++ ){
+			(function (i){
+				var name 	= t[i].name,
+					pos 	= i;
+				$.ajax({
+					url: '/dist/json/' + name + '.json',
+					dataType: 'json',
+					success:function(data){
+		    			slickSlides.data[name] = data;
+					},
+					complete:function(data){
+						slickSlides.templates[pos].object.resolve();
+					}
+				});
+			})(i);
+		};
 
-	loadJSON:function(){
 		$.when(
-			// load base slide data
+			t[slickSlides.totalTemplates - 1].object,
+			$.getJSON( '/dist/json/master.json', function(data) {
+        		slickSlides.data['master'] = data;
+    		}),
 			$.getJSON( '/dist/json/slides.json', function(data) {
-        		slickSlides.data['base'] = data;
-    		}),
-    		$.getJSON( '/dist/json/full.json', function(data) {
-        		slickSlides.data['full'] = data;
-    		}),
-    		$.getJSON( '/dist/json/half.json', function(data) {
-        		slickSlides.data['half'] = data;
-    		}),
-    		$.getJSON( '/dist/json/triplet.json', function(data) {
-        		slickSlides.data['triplet'] = data;
-    		}),
-    		$.getJSON( '/dist/json/quarter.json', function(data) {
-        		slickSlides.data['quarter'] = data;
-    		}),
-    		$.getJSON( '/dist/json/corner.json', function(data) {
-        		slickSlides.data['corner'] = data;
-    		}),
-    		$.getJSON( '/dist/json/circular.json', function(data) {
-        		slickSlides.data['circular'] = data;
-    		}),
-    		$.getJSON( '/dist/json/diagonal.json', function(data) {
-        		slickSlides.data['diagonal'] = data;
+        		slickSlides.data['base'] = data;    		})
+   			
+    		/*$.getJSON( '/dist/json/full.json', function(data) {   
+			}),
+			$.getJSON( '/dist/json/half.json', function(data) {
+	    		slickSlides.data['half'] = data;
+			}),
+			$.getJSON( '/dist/json/triplet.json', function(data) {
+	    		slickSlides.data['triplet'] = data;
+			}),
+			$.getJSON( '/dist/json/quarter.json', function(data) {
+	    		slickSlides.data['quarter'] = data;
+			}),
+			$.getJSON( '/dist/json/corner.json', function(data) {
+	    		slickSlides.data['corner'] = data;
+			}),
+			$.getJSON( '/dist/json/circular.json', function(data) {
+	    		slickSlides.data['circular'] = data;
+			}),
+			$.getJSON( '/dist/json/diagonal.json', function(data) {
+	    		slickSlides.data['diagonal'] = data;
+	    	})    	*/	
 		).then(function(){
-			// load next set of functions //
+			console.log('done')
+			slickSlides.configureBuild( slickSlides.data.master );
+			slickSlides.createSlides( slickSlides.data );
 		});
 	}
 };
-
-
 
 /* Parent object for all slide objects - all slides will inherit from this constructor
 ==============================================================================================*/
@@ -218,7 +254,7 @@ slickSlides.inheritSlide( SlickSlideCircular, SlickSlide );
 /* Get the slide party started
 ==============================================================================================*/
 $(document).ready(function(){
-	slickSlides.loadJSON();
+	slickSlides.loadJSON( slickSlides.templates );
 });
 
 
