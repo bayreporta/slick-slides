@@ -4,7 +4,6 @@
 var slickSlides = {
 	target_element: null, 	/* target element to append slides to */
 	total_slides: 	null, 	/* total slides */	
-	data: 			{}, 	/* imported data */
 	slides: 		[],	  	/* will eventually store all the slides */
 	total_JSON: 	10, 	/* total json files to load if not Wordpress */
 	JSON_files: 	[		/* array of all json that need to be loaded if not Wordress */
@@ -49,15 +48,14 @@ var slickSlides = {
 			object: $.Deferred()
 		},
 	],
-	total_fonts: 	null,
+	total_fonts: 	null,	/* total custom fonts */
 	fonts: 			[],		/* custom fonts stored here */
+	data: 			{}, 	/* imported temporary data */
 	
+	//passes parent slide class parameters down to all subclasses
 	inheritSlide:function( child, parent ){
-		//copy props and methods of base slide object
 		var copyOfParent = Object.create(parent.prototype);
-		//set constuctor to subclass object
 		copyOfParent.constructor = child;
-		//make it so parent class can now inherit subclass props and methods
 		child.prototype = copyOfParent;
 	},
 	//configure this build of SlickSlides 
@@ -78,7 +76,6 @@ var slickSlides = {
 			if ( d[i].target === 'typekit' ){
 				font['key'] = d[i].typekit_id;
 			}
-
 			slickSlides.fonts.push(font);
 		}
 	},
@@ -198,6 +195,7 @@ function SlickSlideFull( parentData, childData ){
 	SlickSlide.call(this, parentData, childData );
 	this.primary_type 			= childData.primary_type;
 	this.primary_value 			= childData.primary_value;
+	this.primary_background 	= childData.primary_background;
 	this.primary_effect 		= childData.primary_effect;
 	this.primary_effect_value 	= childData.primary_effect_value;
 }
@@ -209,10 +207,12 @@ function SlickSlideHalf( parentData, childData ){
 	this.variant						= childData.variant;
 	this.half_segment_one_type 			= childData.half_segment_one_type;
 	this.half_segment_one_value 		= childData.half_segment_one_value;
+	this.half_segment_one_background 	= childData.half_segment_one_background;
 	this.half_segment_one_effect_type 	= childData.half_segment_one_effect_type;
 	this.half_segment_one_effect_value 	= childData.half_segment_one_effect_value;
 	this.half_segment_two_type 			= childData.half_segment_two_type;
 	this.half_segment_two_value 		= childData.half_segment_two_value;
+	this.half_segment_two_background 	= childData.half_segment_two_background;
 	this.half_segment_two_effect_type 	= childData.half_segment_two_effect_type;
 	this.half_segment_two_effect_value 	= childData.half_segment_two_effect_value;
 
