@@ -8,12 +8,7 @@
         "value": 13
     },
     {
-        "variable": "header_font"
-    },
-    {
-        "variable": "body_font"
-    },
-    {
-        "variable": "typekit_code"
+        "variable": "total_fonts",
+        "value": 2
     }
 ]

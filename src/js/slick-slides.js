@@ -3,13 +3,11 @@
 
 var slickSlides = {
 	target_element: null, 	/* target element to append slides to */
-	total_slides: 	null, 	/* total slides */
-	header_font: 	null, 	/* header font for slides */
-	body_font: 		null, 	/* body font for slides */
+	total_slides: 	null, 	/* total slides */	
 	data: 			{}, 	/* imported data */
 	slides: 		[],	  	/* will eventually store all the slides */
-	total_JSON: 		9, 		/* total json files to load if not Wordpress */
-	JSON_files: 		[		/* array of all json that need to be loaded if not Wordress */
+	total_JSON: 	10, 	/* total json files to load if not Wordpress */
+	JSON_files: 	[		/* array of all json that need to be loaded if not Wordress */
 		{
 			name: 'full',
 			object: $.Deferred()
@@ -43,11 +41,17 @@ var slickSlides = {
 			object: $.Deferred()
 		},
 		{
+			name: 'fonts',
+			object: $.Deferred()
+		},
+		{
 			name: 'slides',
 			object: $.Deferred()
 		},
 	],
-
+	total_fonts: 	null,
+	fonts: 			[],		/* custom fonts stored here */
+	
 	inheritSlide:function( child, parent ){
 		//copy props and methods of base slide object
 		var copyOfParent = Object.create(parent.prototype);
@@ -62,6 +66,21 @@ var slickSlides = {
 		for ( var i = 0 ; i < options ; i++ ){
 			this[d[i].variable] = d[i].value;
 		}	
+	},
+	//if special fonts are requested, set up for loading
+	configureFonts:function( d ){
+		for ( var i = 0 ; i < this.total_fonts ; i++ ){
+			var font = {};
+			font['target'] 	= d[i].target;
+			font['service'] = d[i].font_service;
+			font['family'] 	= d[i].font_family;
+
+			if ( d[i].target === 'typekit' ){
+				font['key'] = d[i].typekit_id;
+			}
+
+			slickSlides.fonts.push(font);
+		}
 	},
 	//build slide objects based on input
 	createSlides:function( d ){
@@ -134,7 +153,8 @@ var slickSlides = {
 			t[slickSlides.total_JSON - 1].object
 		).then(function(){
 			slickSlides.configureBuild( slickSlides.data.master );
-			slickSlides.createSlides( slickSlides.data );
+			slickSlides.configureFonts( slickSlides.data.fonts );
+			slickSlides.createSlides( slickSlides.data );	
 		});
 	}
 };
