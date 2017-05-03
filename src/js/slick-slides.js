@@ -114,9 +114,10 @@ var slickSlides = {
 					break;
 			}
 
-
+			//build the slide and append to DOM
+			slickSlides.slides[i].buildSlide();
 		}
-		this.slides[1].buildSlide();
+		
 	},	
 	//locate a slides child data when building
 	locateChildData:function( slideID, template ){
@@ -189,6 +190,7 @@ function SlickSlide( data ) {
 		this.header = 	data.header_content; 
 	}
 }
+
 //build the slide
 SlickSlide.prototype.buildSlide = function(){
 	var targetElem 	= document.getElementById( slickSlides.target_element ),
@@ -204,7 +206,7 @@ SlickSlide.prototype.buildSlide = function(){
 	slide += '>';
 
 	//add header if active
-	if ( this.header === 'active' ){ slide += '<div class="ss-header"><h1>' + this.header_content + '</h1></div>'; }
+	if ( this.header === 'active' ){ slide += '<div class="slickslide-header"><h1>' + this.header_content + '</h1></div>'; }
 
 	//add appropriate template elements
 	slide += this.buildChildElements( this );
@@ -214,6 +216,24 @@ SlickSlide.prototype.buildSlide = function(){
 
 	//append to DOM
     targetElem.innerHTML  = slide ;
+}
+
+//will add elements to the slide
+SlickSlide.prototype.buildSlideElement = function( type, content ){
+	var slide = '<div class="slickslide-' + type + '">';
+	
+	//add elements based on type
+	switch( type ){
+		case 'text':
+		case 'quote':
+			slide += '<p>' + content + '</p>';
+			break;
+	}
+
+	//close element
+	slide += '</div>';
+
+	return slide;
 }
 
 /* Child objects based on slide templates
@@ -232,7 +252,9 @@ function SlickSlideFull( parentData, childData ){
 }
 slickSlides.inheritSlide( SlickSlideFull, SlickSlide );
 SlickSlideFull.prototype.buildChildElements = function( d ){
-	var slide = '<div class="ss-full">';
+	var slide = '<div class="slickslide-full">';
+
+	slide += d.buildSlideElement( d.primary_type, d.primary_value );
 
 	slide += '</div>';
 
@@ -253,9 +275,34 @@ function SlickSlideHalf( parentData, childData ){
 	this.half_segment_two_background 	= childData.half_segment_two_background;
 	this.half_segment_two_effect_type 	= childData.half_segment_two_effect_type;
 	this.half_segment_two_effect_value 	= childData.half_segment_two_effect_value;
-
 }
 slickSlides.inheritSlide( SlickSlideHalf, SlickSlide );
+SlickSlideHalf.prototype.buildChildElements = function( d ){
+	var slide = '<div class="slickslide-half-';
+
+	//add variant
+	if ( d.variant === 'horizontal' ) { slide += 'horizontal">'; }
+	else { slide += 'vertical">'; }
+
+	//add segments and elements
+	for ( var i = 0 ; i < 2 ; i++ ){
+		slide += '<div class="slickslide-segment">';
+			switch(i){
+				case 0:
+					slide += d.buildSlideElement( d.half_segment_one_type, d.half_segment_one_value );
+					break;
+				case 1:
+					slide += d.buildSlideElement( d.half_segment_two_type, d.half_segment_two_value );
+					break;
+			}
+
+		slide += '</div>';
+	}
+
+	slide += '</div>';
+
+	return slide;
+}
 
 // quarter template slide
 function SlickSlideQuarter( parentData, childData ){
