@@ -195,7 +195,7 @@ function SlickSlide( data ) {
 SlickSlide.prototype.buildSlide = function(){
 	var targetElem 	= document.getElementById( slickSlides.target_element ),
 		slide 		= '<section class="slickslide" data-slide-id="' + this.id + '" ';
-
+	console.log(this.id);
 	//add transition data 
 	if ( this.slide_left ) 	{ slide += 'data-slide-left="' + this.slide_left + '" '; }
 	if ( this.slide_right ) { slide += 'data-slide-right="' + this.slide_right + '" '; }
@@ -215,7 +215,7 @@ SlickSlide.prototype.buildSlide = function(){
 	slide += '</section>';
 
 	//append to DOM
-    targetElem.innerHTML  = slide ;
+    targetElem.innerHTML += slide ;
 }
 
 //will add elements to the slide
