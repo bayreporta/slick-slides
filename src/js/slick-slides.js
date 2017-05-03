@@ -114,6 +114,7 @@ var slickSlides = {
 					break;
 			}
 		}
+		this.slides[1].buildSlide();
 	},	
 	//locate a slides child data when building
 	locateChildData:function( slideID, template ){
@@ -186,6 +187,31 @@ function SlickSlide( data ) {
 		this.header = 	data.header_content; 
 	}
 }
+//build the slide
+SlickSlide.prototype.buildSlide = function(){
+	var targetElem = slickSlides.target_element,
+		slide;
+
+	switch( this.base_template ){
+		case 'full':
+			break;
+		case 'half':
+			break;
+		case 'triplet':
+			break;
+		case 'quarter':
+			break;
+		case 'corner':
+			break;
+		case 'diagonal':
+			break;
+		case 'circular':
+			break;
+	}
+
+	//return slide;
+	//this.buildChildElements();
+}
 
 /* Child objects based on slide templates
 ==============================================================================================*/
@@ -200,6 +226,9 @@ function SlickSlideFull( parentData, childData ){
 	this.primary_effect_value 	= childData.primary_effect_value;
 }
 slickSlides.inheritSlide( SlickSlideFull, SlickSlide );
+SlickSlideFull.prototype.buildChildElements = function( slide ){
+	console.log('yup');
+}
 
 // half template slide
 function SlickSlideHalf( parentData, childData ){
