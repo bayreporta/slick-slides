@@ -69,12 +69,12 @@ var slickSlides = {
 	configureFonts:function( d ){
 		for ( var i = 0 ; i < this.total_fonts ; i++ ){
 			var font = {};
-			font['target'] 	= d[i].target;
-			font['service'] = d[i].font_service;
-			font['family'] 	= d[i].font_family;
+			font.target 	= d[i].target;
+			font.service 	= d[i].font_service;
+			font.family 	= d[i].font_family;
 
 			if ( d[i].target === 'typekit' ){
-				font['key'] = d[i].typekit_id;
+				font.key = d[i].typekit_id;
 			}
 			slickSlides.fonts.push(font);
 		}
@@ -82,34 +82,37 @@ var slickSlides = {
 	//build slide objects based on input
 	createSlides:function( d ){
 		for ( var i = 0 ; i < this.total_slides ; i++ ) {
-			var childID = slickSlides.locateChildData( d.slides[i].id, d.slides[i].base_template );
+			var childID = slickSlides.locateChildData( d.slides[i].id, d.slides[i].base_template ),
+				slide;
+
+			//create subclass based on slide template
 			switch( d.slides[i].base_template ){
 				case 'full':
-					var slide = new SlickSlideFull( d.slides[i], d.full[childID] );
+					slide = new SlickSlideFull( d.slides[i], d.full[childID] );
 					slickSlides.slides.push( slide );
 					break;
 				case 'half':
-					var slide = new SlickSlideHalf( d.slides[i], d.half[childID] );
+					slide = new SlickSlideHalf( d.slides[i], d.half[childID] );
 					slickSlides.slides.push( slide );
 					break;
 				case 'triplet':
-					var slide = new SlickSlideTriplet( d.slides[i], d.triplet[childID] );
+					slide = new SlickSlideTriplet( d.slides[i], d.triplet[childID] );
 					slickSlides.slides.push( slide );
 					break;
 				case 'quarter':
-					var slide = new SlickSlideQuarter( d.slides[i], d.quarter[childID] );
+					slide = new SlickSlideQuarter( d.slides[i], d.quarter[childID] );
 					slickSlides.slides.push( slide );
 					break;
 				case 'corner':
-					var slide = new SlickSlideCorner( d.slides[i], d.corner[childID] );
+					slide = new SlickSlideCorner( d.slides[i], d.corner[childID] );
 					slickSlides.slides.push( slide );
 					break;
 				case 'diagonal':
-					var slide = new SlickSlideDiagonal( d.slides[i], d.diagonal[childID] );
+					slide = new SlickSlideDiagonal( d.slides[i], d.diagonal[childID] );
 					slickSlides.slides.push( slide );
 					break;
 				case 'circular':
-					var slide = new SlickSlideCircular( d.slides[i], d.circular[childID] );
+					slide = new SlickSlideCircular( d.slides[i], d.circular[childID] );
 					slickSlides.slides.push( slide );
 					break;
 			}
@@ -147,7 +150,7 @@ var slickSlides = {
 					}
 				});
 			})(i);
-		};
+		}
 
 		//when all the json are finished loading, executing build scripts
 		$.when(
@@ -216,7 +219,7 @@ SlickSlide.prototype.buildSlide = function(){
 
 	//append to DOM
     targetElem.innerHTML += slide ;
-}
+};
 
 //will add elements to the slide
 SlickSlide.prototype.buildSlideElement = function( type, content ){
@@ -234,7 +237,7 @@ SlickSlide.prototype.buildSlideElement = function( type, content ){
 	slide += '</div>';
 
 	return slide;
-}
+};
 
 /* Child objects based on slide templates
 ==============================================================================================*/
@@ -259,7 +262,7 @@ SlickSlideFull.prototype.buildChildElements = function( d ){
 	slide += '</div>';
 
 	return slide;
-}
+};
 
 // half template slide
 function SlickSlideHalf( parentData, childData ){
@@ -302,7 +305,7 @@ SlickSlideHalf.prototype.buildChildElements = function( d ){
 	slide += '</div>';
 
 	return slide;
-}
+};
 
 // quarter template slide
 function SlickSlideQuarter( parentData, childData ){
