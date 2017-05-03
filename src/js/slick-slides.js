@@ -195,7 +195,7 @@ function SlickSlide( data ) {
 SlickSlide.prototype.buildSlide = function(){
 	var targetElem 	= document.getElementById( slickSlides.target_element ),
 		slide 		= '<section class="slickslide" data-slide-id="' + this.id + '" ';
-	console.log(this.id);
+
 	//add transition data 
 	if ( this.slide_left ) 	{ slide += 'data-slide-left="' + this.slide_left + '" '; }
 	if ( this.slide_right ) { slide += 'data-slide-right="' + this.slide_right + '" '; }
@@ -206,7 +206,7 @@ SlickSlide.prototype.buildSlide = function(){
 	slide += '>';
 
 	//add header if active
-	if ( this.header === 'active' ){ slide += '<div class="slickslide-header"><h1>' + this.header_content + '</h1></div>'; }
+	if ( this.header ){ slide += '<div class="slickslide-header"><h1>' + this.header + '</h1></div>'; }
 
 	//add appropriate template elements
 	slide += this.buildChildElements( this );
