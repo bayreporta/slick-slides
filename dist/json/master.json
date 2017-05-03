@@ -1,7 +1,7 @@
 [
     {
         "variable": "target_element",
-        "value": "#container"
+        "value": "container"
     },
     {
         "variable": "total_slides",
@@ -10,5 +10,9 @@
     {
         "variable": "total_fonts",
         "value": 2
+    },
+    {
+        "variable": "home_url",
+        "value": "http://johnodagostino.io"
     }
 ]

@@ -113,6 +113,8 @@ var slickSlides = {
 					slickSlides.slides.push( slide );
 					break;
 			}
+
+
 		}
 		this.slides[1].buildSlide();
 	},	
@@ -189,28 +191,29 @@ function SlickSlide( data ) {
 }
 //build the slide
 SlickSlide.prototype.buildSlide = function(){
-	var targetElem = slickSlides.target_element,
-		slide;
+	var targetElem 	= document.getElementById( slickSlides.target_element ),
+		slide 		= '<section class="slickslide" data-slide-id="' + this.id + '" ';
 
-	switch( this.base_template ){
-		case 'full':
-			break;
-		case 'half':
-			break;
-		case 'triplet':
-			break;
-		case 'quarter':
-			break;
-		case 'corner':
-			break;
-		case 'diagonal':
-			break;
-		case 'circular':
-			break;
-	}
+	//add transition data 
+	if ( this.slide_left ) 	{ slide += 'data-slide-left="' + this.slide_left + '" '; }
+	if ( this.slide_right ) { slide += 'data-slide-right="' + this.slide_right + '" '; }
+	if ( this.slide_up ) 	{ slide += 'data-slide-up="' + this.slide_up + '" '; }
+	if ( this.slide_down ) 	{ slide += 'data-slide-down="' + this.slide_down + '" '; }
+	
+	//finish closing initial section element
+	slide += '>';
 
-	//return slide;
-	//this.buildChildElements();
+	//add header if active
+	if ( this.header === 'active' ){ slide += '<div class="ss-header"><h1>' + this.header_content + '</h1></div>'; }
+
+	//add appropriate template elements
+	slide += this.buildChildElements( this );
+
+	//close slide element
+	slide += '</section>';
+
+	//append to DOM
+    targetElem.innerHTML  = slide ;
 }
 
 /* Child objects based on slide templates
@@ -219,6 +222,8 @@ SlickSlide.prototype.buildSlide = function(){
 // full template slide
 function SlickSlideFull( parentData, childData ){
 	SlickSlide.call(this, parentData, childData );
+	this.id   					= childData.id;
+	this.pretty_id   			= childData.pretty_id;
 	this.primary_type 			= childData.primary_type;
 	this.primary_value 			= childData.primary_value;
 	this.primary_background 	= childData.primary_background;
@@ -226,8 +231,12 @@ function SlickSlideFull( parentData, childData ){
 	this.primary_effect_value 	= childData.primary_effect_value;
 }
 slickSlides.inheritSlide( SlickSlideFull, SlickSlide );
-SlickSlideFull.prototype.buildChildElements = function( slide ){
-	console.log('yup');
+SlickSlideFull.prototype.buildChildElements = function( d ){
+	var slide = '<div class="ss-full">';
+
+	slide += '</div>';
+
+	return slide;
 }
 
 // half template slide
