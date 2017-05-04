@@ -89,6 +89,17 @@ var slickSlides = {
 					//dont forget extra step with id
 					break;
 			}
+
+			//add fonts to elements
+			var fam = '\'' + d[i].font_family + '\'';
+			switch( d[i].target ){
+				case 'header':
+					$( '.slickslides h1' ).add( '.slickslides h2' ).add( '.slickslides h3' ).css( 'font-family', fam );
+					break;
+				case 'body':
+					$( '.slickslides p' ).add( '.slickslides span' ).css( 'font-family', fam );
+					break;
+			}
 		}
 
 		//add fonts
@@ -98,6 +109,7 @@ var slickSlides = {
 		//close up the script and append
 		fontScript += 'classes:false});</script>';
 		$( 'body' ).append( fontScript );
+
 	},
 	//build slide objects based on input
 	createSlides:function( d ){
@@ -179,11 +191,11 @@ var slickSlides = {
 			//process variables for the entire slide show
 			slickSlides.configureBuild( slickSlides.data.master );	
 
+			//create slide objects and DOM elements
+			slickSlides.createSlides( slickSlides.data );
+
 			//if there are special fonts, process them here
 			if ( slickSlides.total_fonts > 0 ) { slickSlides.configureFonts( slickSlides.data.fonts ); }
-
-			//create slide objects and DOM elements
-			slickSlides.createSlides( slickSlides.data );	
 		});
 	}
 };
