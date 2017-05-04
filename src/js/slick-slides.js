@@ -49,7 +49,6 @@ var slickSlides = {
 		},
 	],
 	total_fonts: 	null,	/* total custom fonts */
-	fonts: 			[],		/* custom fonts stored here */
 	data: 			{}, 	/* imported temporary data */
 	
 	//passes parent slide class parameters down to all subclasses
@@ -64,20 +63,41 @@ var slickSlides = {
 		for ( var i = 0 ; i < options ; i++ ){
 			this[d[i].variable] = d[i].value;
 		}	
+
+		//add slickslides class to target element
+		$( '#' + this.target_element ).addClass( 'slickslides' );
 	},
 	//if special fonts are requested, set up for loading
 	configureFonts:function( d ){
-		for ( var i = 0 ; i < this.total_fonts ; i++ ){
-			var font = {};
-			font.target 	= d[i].target;
-			font.service 	= d[i].font_service;
-			font.family 	= d[i].font_family;
+		var fontScript 		= '<script type="text/javascript">WebFont.load({',
+			googleFontsBase = 'google:{families:[',
+			googleFonts 	= ''; 
 
-			if ( d[i].target === 'typekit' ){
-				font.key = d[i].typekit_id;
+		//process font data
+		for ( var i = 0 ; i < this.total_fonts ; i++ ){			
+			//configure WebFontLoader based on type of font
+			switch( d[i].font_service ){
+				case 'google':
+					if ( googleFonts === '' ){
+						googleFonts = '\'' + d[i].font_family + '\'';
+					}
+					else {
+						googleFonts += ',\''	 + d[i].font_family + '\'';
+					}
+					break;
+				case 'typekit':
+					//dont forget extra step with id
+					break;
 			}
-			slickSlides.fonts.push(font);
 		}
+
+		//add fonts
+		googleFontsBase += googleFonts + ']},'; 
+		fontScript += googleFontsBase;
+
+		//close up the script and append
+		fontScript += 'classes:false});</script>';
+		$( 'body' ).append( fontScript );
 	},
 	//build slide objects based on input
 	createSlides:function( d ){
@@ -156,8 +176,13 @@ var slickSlides = {
 		$.when(
 			t[slickSlides.total_JSON - 1].object
 		).then(function(){
-			slickSlides.configureBuild( slickSlides.data.master );
-			slickSlides.configureFonts( slickSlides.data.fonts );
+			//process variables for the entire slide show
+			slickSlides.configureBuild( slickSlides.data.master );	
+
+			//if there are special fonts, process them here
+			if ( slickSlides.total_fonts > 0 ) { slickSlides.configureFonts( slickSlides.data.fonts ); }
+
+			//create slide objects and DOM elements
 			slickSlides.createSlides( slickSlides.data );	
 		});
 	}

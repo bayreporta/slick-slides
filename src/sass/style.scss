@@ -1,0 +1,23 @@
+/* Import Compass
+------------------------------------------------*/
+@import 'compass';
+@import 'compass/reset';
+
+/* Media variables and expression aliases
+------------------------------------------------*/
+$breakpoints: 		(phone:320px, tablet:768px, desktop:1024px) !default;
+$media-expressions:	(
+					 screen:	"screen", 
+					 phoneRez: 	"(-webkit-min-device-pixel-ratio:2)",
+					 retina2x: 	("(-webkit-min-device-pixel-ratio: 2)", 
+                    			 "(min-resolution: 192dpi)")
+					) !default;
+$phone:		">=phone","<tablet","phoneRez";
+$tablet:	">=tablet","<desktop";
+$desktop:	">=desktop";
+$retina:	">=desktop","retina2x";
+
+/* Import partial scss files
+------------------------------------------------*/
+@import "partials/foundation.scss";
+@import "partials/classes.scss";
