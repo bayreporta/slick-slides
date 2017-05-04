@@ -98,7 +98,7 @@ var slickSlides = {
 			var fam = '\'' + d[i].font_family + '\'';
 			switch( d[i].target ){
 				case 'header':
-					$( '.slickslides h1' ).add( '.slickslides h2' ).add( '.slickslides h3' ).css( 'font-family', fam );
+					$( '.slickslides h1' ).add( '.slickslides h2' ).add( '.slickslides h3' ).add( '.slickslides h4' ).css( 'font-family', fam );
 					break;
 				case 'body':
 					$( '.slickslides p' ).add( '.slickslides span' ).css( 'font-family', fam );
@@ -303,7 +303,7 @@ SlickSlideTitle.prototype.buildChildElements = function( d ){
 
 	slide += '<div class="slickside-titletext">';
 		if ( d.header_text !== undefined ) { slide += '<h1>' + d.header_text + '</h1>'; }
-		if ( d.subhead_text !== undefined ) { slide += '<h3>' + d.subhead_text + '</h3>'; }
+		if ( d.subhead_text !== undefined ) { slide += '<h4>' + d.subhead_text + '</h4>'; }
 		if ( d.credit_text !== undefined ) { slide += '<p>' + d.credit_text + '</p>'; }
 	slide += '</div>';
 
