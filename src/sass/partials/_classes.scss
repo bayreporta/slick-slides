@@ -1,7 +1,20 @@
 /* Slick Slide classes
 ==================================================*/
+.slickslides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 .slickslide {
     display: none;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+}
+
+.slickslide:first-of-type {
+    display: block;
 }
 
 .slickslide-header {
@@ -9,6 +22,12 @@
 }
 
 .slickslide-segment {
+
+}
+
+/* slick slide TITLE template 
+---------------------------------*/
+.slickslide-title {
 
 }
 
@@ -33,7 +52,11 @@
 /* slick slide ELEMENTS 
 ---------------------------------*/
 .slickslide-text {
-
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include simple-transform( null, null, -50%, -50% );
+    width: 50%;
 }
 
 .slickslide-quote {

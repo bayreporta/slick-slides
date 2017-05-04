@@ -1,9 +1,8 @@
 [
     {
-        "base_template": "full",
+        "base_template": "title",
         "id": 0,
-        "header": "active",
-        "header_content": "Vandals",
+        "pretty_id": "title slide",
         "background_type": "color",
         "background_value": "#000",
         "transition_speed": 0.25,

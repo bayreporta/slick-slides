@@ -5,8 +5,12 @@ var slickSlides = {
 	target_element: null, 	/* target element to append slides to */
 	total_slides: 	null, 	/* total slides */	
 	slides: 		[],	  	/* will eventually store all the slides */
-	total_JSON: 	10, 	/* total json files to load if not Wordpress */
+	total_JSON: 	11, 	/* total json files to load if not Wordpress */
 	JSON_files: 	[		/* array of all json that need to be loaded if not Wordress */
+		{
+			name: 'title',
+			object: $.Deferred()
+		},
 		{
 			name: 'full',
 			object: $.Deferred()
@@ -116,9 +120,12 @@ var slickSlides = {
 		for ( var i = 0 ; i < this.total_slides ; i++ ) {
 			var childID = slickSlides.locateChildData( d.slides[i].id, d.slides[i].base_template ),
 				slide;
-
 			//create subclass based on slide template
 			switch( d.slides[i].base_template ){
+				case 'title':
+					slide = new SlickSlideTitle( d.slides[i], d.title[childID] );
+					slickSlides.slides.push( slide );
+					break;
 				case 'full':
 					slide = new SlickSlideFull( d.slides[i], d.full[childID] );
 					slickSlides.slides.push( slide );
@@ -278,6 +285,30 @@ SlickSlide.prototype.buildSlideElement = function( type, content ){
 
 /* Child objects based on slide templates
 ==============================================================================================*/
+
+// title template slide
+function SlickSlideTitle( parentData, childData ){
+	SlickSlide.call(this, parentData, childData );
+	this.id   					= childData.id;
+	this.pretty_id   			= childData.pretty_id;
+	this.header_text 			= childData.header_text;
+	this.subhead_text 			= childData.subhead_text;
+	this.credit_text 			= childData.credit_text;
+	this.primary_effect 		= childData.primary_effect;
+	this.primary_effect_value 	= childData.primary_effect_value;
+}
+slickSlides.inheritSlide( SlickSlideTitle, SlickSlide );
+SlickSlideTitle.prototype.buildChildElements = function( d ){
+	var slide = '<div class="slickslide-title">';
+
+	slide += '<div class="slickside-titletext">';
+		if ( d.header_text !== undefined ) { slide += '<h1>' + d.header_text + '</h1>'; }
+		if ( d.subhead_text !== undefined ) { slide += '<h3>' + d.subhead_text + '</h3>'; }
+		if ( d.credit_text !== undefined ) { slide += '<p>' + d.credit_text + '</p>'; }
+	slide += '</div>';
+
+	return slide;
+};
 
 // full template slide
 function SlickSlideFull( parentData, childData ){
