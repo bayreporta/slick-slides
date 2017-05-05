@@ -1,29 +1,3 @@
-// testing what would be incoming from json //
-var baseSlide = {
-	'id': 					null,
-	'pretty_id': 			null,
-	'base_template': 		null,
-	'header': 				null,
-	'header_content': 		null,
-	'background_type': 		null,
-	'background_value': 	null,
-	'transition_speed': 	null,
-	'slide_left': 			null,
-	'slide_right': 			null,
-	'slide_up': 			null,
-	'slide_down': 			null,
-	'toggle_options': 		null,
-	'total_options': 		null,
-	'options_location': 	null	
-};
-
-var childSlide = {
-	'primary_type': 		null,
-	'primary_value': 		null,
-	'primary_effect': 		null,
-	'primary_effect_value': null
-};
-
 /* Stores all utility functions and global variables for Slick Slides
 ==============================================================================================*/
 
@@ -219,6 +193,7 @@ slickSlides.inheritSlide( SlickSlideCircular, SlickSlide );
 ==============================================================================================*/
 $(document).ready(function(){
 	slickSlides.loadJSON();
+	//need a function to parse data from Wordpress, but leads into same data crunching system
 });
 
 
