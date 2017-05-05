@@ -1,0 +1,110 @@
+/* Foundational CSS for elements
+=========================================*/
+.slickslides {
+    html,
+    body {
+        font-size: 100%;
+        width: 100%;
+        margin: 0 !important;
+        background: #fff;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        line-height: 1.2em;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 2.5em;
+        font-weight: 700;
+    }
+
+    h2 {
+        margin: 25px 0;
+        font-size: 2em;
+        font-weight: 700;
+    }
+
+    h3 {
+        margin: 20px 0;
+        font-size: 1.5em;
+        font-weight: 700;
+    }
+
+    h4 {
+        margin: 20px 0;
+        font-size: 1.25em;
+    }
+
+    h5 {
+        margin: 0;
+        font-size: 1em;
+    }
+
+    h6 {
+        margin: 0;
+        font-size: 1em;
+    }
+
+    strong,
+    b {
+        font-weight: 700;
+    }
+
+    em,
+    i {
+        font-style: italic;
+    }
+
+    p,
+    span,
+    li,
+    {
+        margin-bottom: 1em;
+        line-height: 1.6em;
+        font-size: 1.2rem;
+    }
+
+    li {
+        margin: 1em 0;    
+    }
+
+    ol,
+    ul {
+        margin: 0 0 0 2em;
+    }
+
+    ol {
+        list-style-type: decimal;
+    }
+
+    ul {
+        list-style-type: square;
+    }
+
+    a {
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    img {
+        width: 100%;
+    }
+
+    blockquote {
+       
+    }
+
+    hr {
+        
+    }
+}

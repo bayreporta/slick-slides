@@ -1,0 +1,81 @@
+[
+    {
+        "id": 2,
+        "variant": "horizontal",
+        "half_segment_one_type": "empty",
+        "half_segment_two_type": "text",
+        "half_segment_two_value": "Ty pulled down the black bandanna covering his mouth, looked at the smog-distorted cityscape stretching toward the horizon. He sat down, pulled out a protein bar, and devoured it whole."
+    },
+    {
+        "id": 6,
+        "variant": "horizontal",
+        "half_segment_one_type": "text",
+        "half_segment_one_value": "“A middle finger,” he said. “Ah, can’t say that’s original.”",
+        "half_segment_two_type": "empty"
+    },
+    {
+        "id": 7,
+        "variant": "horizontal",
+        "half_segment_one_type": "empty",
+        "half_segment_two_type": "text",
+        "half_segment_two_value": "“It’s the symbolism that counts,” Ty replied."
+    },
+    {
+        "id": 8,
+        "variant": "horizontal",
+        "half_segment_one_type": "quote",
+        "half_segment_one_value": "“Either way, it’s against the law,” the cop said as he sat down beside Ty. Ty looked him over, noticed his disinterested gaze stare out across the city.",
+        "half_segment_two_type": "quote",
+        "half_segment_two_value": "“But you’re not going to bust me are you?”"
+    },
+    {
+        "id": 9,
+        "variant": "horizontal",
+        "half_segment_one_type": "text",
+        "half_segment_one_value": "“No,” the cop smiled, “I’m not.” Radio traffic clattered from the cop’s walkie-talkie. He turned it down. “If the Governing Council can’t take a joke, screw ‘em.”",
+        "half_segment_two_type": "empty"
+    },
+    {
+        "id": 10,
+        "variant": "horizontal",
+        "half_segment_one_type": "empty",
+        "half_segment_two_type": "text",
+        "half_segment_two_value": "Ty laughed, “You know it’s much more than a joke these days. I think you see the same problems I see, only you’re a part of it…”"
+    },
+    {
+        "id": 12,
+        "variant": "horizontal",
+        "half_segment_one_type": "text",
+        "half_segment_one_value": "A loud humming noise startled them both. A floating metallic orb the size of a human head hovered above. A glowing red computer-like eye scanned both of them.",
+        "half_segment_two_type": "quote",
+        "half_segment_two_value": "“Warning!” a robotic voice said. “Crime against the state detected. Vandalism, First degree. Hateful speech, first degree. Defacing corporate property, first degree…”"
+    },
+    {
+        "id": 13,
+        "variant": "horizontal",
+        "half_segment_one_type": "text",
+        "half_segment_one_value": "Ty’s eyes lit up. He felt a strong urge to run but the cop’s eyes looking at his told him to wait. Ty took an anxious breath.",
+        "half_segment_two_type": "empty"
+    },
+    {
+        "id": 14,
+        "variant": "horizontal",
+        "half_segment_one_type": "empty",
+        "half_segment_two_type": "text",
+        "half_segment_two_value": "“I’m in the process of apprehending the criminal,” the cop said. “I don’t need any assistance.”"
+    },
+    {
+        "id": 16,
+        "variant": "horizontal",
+        "half_segment_one_type": "text",
+        "half_segment_one_value": "It happened fast. Ty didn’t see Officer Steward whip out his sidearm and blast the Floating Eye in one graceful motion. As the smoking metal heap fell, Ty asked, “Why?”",
+        "half_segment_two_type": "empty"
+    },
+    {
+        "id": 17,
+        "variant": "horizontal",
+        "half_segment_one_type": "empty",
+        "half_segment_two_type": "text",
+        "half_segment_two_value": "Officer Steward looked at Ty, “I think you already know the answer. Now get out of here. There are plenty more billboards that need defacing.”"
+    }
+]

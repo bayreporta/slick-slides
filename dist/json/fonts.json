@@ -1,0 +1,12 @@
+[
+    {
+        "target": "header",
+        "font_service": "google",
+        "font_family": "Droid Sans"
+    },
+    {
+        "target": "body",
+        "font_service": "google",
+        "font_family": "Droid Serif"
+    }
+]

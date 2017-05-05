@@ -1,8 +1,32 @@
 [
     {
-        "id": 0,
-        "prettyid": "full monty",
-        "primarytype": "text",
-        "primaryvalue": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        "id": 1,
+        "primary_type": "text",
+        "primary_value": "The sound of the spray paint can spitting neon green from its nozzle drowned out the ambient noise of the city: police sirens, echoing gunshots, and the monotonous drone of the Floating Eyes. Ty directed the colorful symphony across a giant raised billboard that read “One World, One People,” creating a large middle finger in the center of it all. When the spray paint puttered to an end, he appreciated his work like a viewer does at an art gallery."
+    },
+    {
+        "id": 3,
+        "primary_type": "quote",
+        "primary_value": "“You again,” said a stern male voice."
+    },
+    {
+        "id": 4,
+        "primary_type": "quote",
+        "primary_value": "“You know me,” Ty smiled and crumpled the wrapper, “I like my art.”"
+    },
+    {
+        "id": 5,
+        "primary_type": "text",
+        "primary_value": "Ty looked up at the police officer wearing a gray uniform. Sown into each of his uniform’s sleeves was an American flag with one star instead of fifty. The officer looked up at the billboard, smiled."
+    },
+    {
+        "id": 11,
+        "primary_type": "text",
+        "primary_value": "“Just trying to survive like everyone else,” the cop interjected. “You think I like busting kids like you for petty vandalism and sending you off to one of the camps?” he paused. “No. I’d rather be chasing murderers and drug dealers.”"
+    },
+    {
+        "id": 15,
+        "primary_type": "text",
+        "primary_value": "The Floating Eye focused its mechanical eye on him, “Officer Grace Steward, Homeland Security Division Four. You are aiding and abetting a political criminal. You will be…”\r\nThere was a click and a thundering boom."
     }
 ]

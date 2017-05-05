@@ -1,0 +1,18 @@
+[
+    {
+        "variable": "target_element",
+        "value": "container"
+    },
+    {
+        "variable": "total_slides",
+        "value": 18
+    },
+    {
+        "variable": "total_fonts",
+        "value": 2
+    },
+    {
+        "variable": "home_url",
+        "value": "http://johnodagostino.io"
+    }
+]
