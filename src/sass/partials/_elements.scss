@@ -1,0 +1,18 @@
+/* Slick Slide ELEMENTS
+==================================================*/
+
+.slickslide-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include simple-transform( null, null, -50%, -50% );
+    width: 50%;
+
+    p {
+        font-size: 1.5rem;
+    }
+}
+
+.slickslide-quote {
+    
+}

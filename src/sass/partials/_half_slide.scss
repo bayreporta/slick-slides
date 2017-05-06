@@ -1,0 +1,32 @@
+/* slick slide HALF template 
+---------------------------------*/
+.slickslide-half-horizontal,
+.slickslide-half-vertical {
+
+}
+
+.slickslide-half-horizontal {
+
+    .slickslide-segment {
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+    }
+
+    .slickslide-segment:last-of-type {
+        left: 50%;
+        background: #000;
+    }
+
+
+}
+
+.slickslide-half-vertical {
+
+    .slickslide-segment {
+        
+    }
+
+
+}
