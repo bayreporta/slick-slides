@@ -158,6 +158,9 @@ var slickSlides = {
 
 			//build the slide and append to DOM
 			slickSlides.slides[i].buildSlide();
+
+			//add any additional styles to the slide
+			slickSlides.slides[i].applyStyles();
 		}
 		
 	},	
@@ -248,7 +251,7 @@ SlickSlide.prototype.buildSlide = function(){
 	if ( this.slide_right ) { slide += 'data-slide-right="' + this.slide_right + '" '; }
 	if ( this.slide_up ) 	{ slide += 'data-slide-up="' + this.slide_up + '" '; }
 	if ( this.slide_down ) 	{ slide += 'data-slide-down="' + this.slide_down + '" '; }
-	
+
 	//finish closing initial section element
 	slide += '>';
 
@@ -282,6 +285,16 @@ SlickSlide.prototype.buildSlideElement = function( type, content ){
 
 	return slide;
 };
+//apply any special styles to the slide as a whole, template based slides get their own treatment
+SlickSlide.prototype.applyStyles = function(){
+	console.log(this)
+	//background of slide
+	switch( this.background.type ){
+		case 'color':
+			$( '.slickslide:eq(' + this.id + ')' ).css( 'background-color', this.background.value );
+			break;
+	}
+}
 
 /* Child objects based on slide templates
 ==============================================================================================*/
