@@ -3,6 +3,11 @@
 .slickslide-half-horizontal,
 .slickslide-half-vertical {
 
+    // THE ELEMENTS //
+    .slickslide-text {
+        width: 85%;
+    }
+
 }
 
 .slickslide-half-horizontal {
@@ -16,7 +21,6 @@
 
     .slickslide-segment:last-of-type {
         left: 50%;
-        background: #000;
     }
 
 
@@ -25,8 +29,13 @@
 .slickslide-half-vertical {
 
     .slickslide-segment {
-        
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
     }
 
-
+    .slickslide-segment:last-of-type {
+        top: 50%;
+    }
 }

@@ -357,7 +357,20 @@ SlickSlideHalf.prototype.buildChildElements = function( d ){
 
 	//add segments and elements
 	for ( var i = 0 ; i < 2 ; i++ ){
-		slide += '<div class="slickslide-segment">';
+		slide += '<div class="slickslide-segment"';
+
+		//background check
+		switch(i){
+			case 0:
+				if ( d.half_segment_one_background ) { slide += 'style="background-color: ' + d.half_segment_one_background + '"'; }
+				break;
+			case 1:
+				if ( d.half_segment_two_background ) { slide += 'style="background-color: ' + d.half_segment_two_background + '"'; }
+				break;
+		}
+
+
+		slide += '>';
 			switch(i){
 				case 0:
 					slide += d.buildSlideElement( d.half_segment_one_type, d.half_segment_one_value );
