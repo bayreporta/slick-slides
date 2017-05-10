@@ -430,15 +430,14 @@ SlickSlideHalf.prototype.buildChildElements = function( d ){
 
 		//background check
 		switch(i){
-			case 0:
-				if ( d.half_segment_one_background ) { slide += 'style="background-color: ' + d.half_segment_one_background + '"'; }
+			case 0:				
+				if ( d.half_segment_one_background !== undefined ) { slide += 'style="background-color: ' + d.half_segment_one_background + '"'; }
 				break;
 			case 1:
-				if ( d.half_segment_two_background ) { slide += 'style="background-color: ' + d.half_segment_two_background + '"'; }
+				if ( d.half_segment_two_background !== undefined ) { slide += 'style="background-color: ' + d.half_segment_two_background + '"'; }
 				break;
 		}
-
-
+		
 		slide += '>';
 			switch(i){
 				case 0:
