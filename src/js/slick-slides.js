@@ -54,6 +54,14 @@ var slickSlides = {
 	],
 	total_fonts: 	null,	/* total custom fonts */
 	data: 			{}, 	/* imported temporary data */
+	controls: 		{ 		/* stores variables for controlling slides */
+		current: 	0, 		/* current ID of slide */ 
+		left: 		null,   /* ID of slide to left */
+		right: 		null, 	/* ID of slide to right */
+		up: 		null, 	/* ID of slide above */
+		down: 		null 	/* ID of slide below */
+
+	},
 	
 	//passes parent slide class parameters down to all subclasses
 	inheritSlide:function( child, parent ){
@@ -207,6 +215,20 @@ var slickSlides = {
 			//if there are special fonts, process them here
 			if ( slickSlides.total_fonts > 0 ) { slickSlides.configureFonts( slickSlides.data.fonts ); }
 		});
+	},
+	//determine slide direction and animate
+	animateSlide:function( direction ){
+		//determine the direction
+		switch( direction ){
+			case 37:
+
+				break;
+			case 39:
+				break;
+
+		}
+
+
 	}
 };
 
@@ -247,10 +269,10 @@ SlickSlide.prototype.buildSlide = function(){
 		slide 		= '<section class="slickslide" data-slide-id="' + this.id + '" ';
 
 	//add transition data 
-	if ( this.slide_left ) 	{ slide += 'data-slide-left="' + this.slide_left + '" '; }
-	if ( this.slide_right ) { slide += 'data-slide-right="' + this.slide_right + '" '; }
-	if ( this.slide_up ) 	{ slide += 'data-slide-up="' + this.slide_up + '" '; }
-	if ( this.slide_down ) 	{ slide += 'data-slide-down="' + this.slide_down + '" '; }
+	if ( this.directions.left ) 	{ slide += 'data-slide-left="' + this.directions.left + '" '; }
+	if ( this.directions.right ) 	{ slide += 'data-slide-right="' + this.directions.right + '" '; }
+	if ( this.directions.up ) 		{ slide += 'data-slide-up="' + this.directions.up + '" '; }
+	if ( this.directions.down ) 	{ slide += 'data-slide-down="' + this.directions.down + '" '; }
 
 	//finish closing initial section element
 	slide += '>';
@@ -287,14 +309,13 @@ SlickSlide.prototype.buildSlideElement = function( type, content ){
 };
 //apply any special styles to the slide as a whole, template based slides get their own treatment
 SlickSlide.prototype.applyStyles = function(){
-	console.log(this)
 	//background of slide
 	switch( this.background.type ){
 		case 'color':
 			$( '.slickslide:eq(' + this.id + ')' ).css( 'background-color', this.background.value );
 			break;
 	}
-}
+};
 
 /* Child objects based on slide templates
 ==============================================================================================*/
@@ -479,6 +500,15 @@ function SlickSlideCircular( parentData, childData ){
 	
 }
 slickSlides.inheritSlide( SlickSlideCircular, SlickSlide );
+
+/* Watch for queues regarding 
+==============================================================================================*/
+$(document).on('keydown', function(event){
+	event.preventDefault();
+
+
+
+});
 
 /* Get the slide party started
 ==============================================================================================*/

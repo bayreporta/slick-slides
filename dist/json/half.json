@@ -1,7 +1,7 @@
 [
     {
         "id": 2,
-        "variant": "horizontal",
+        "variant": "vertical",
         "half_segment_one_type": "empty",
         "half_segment_one_background": "#000",
         "half_segment_two_type": "text",

@@ -9,12 +9,14 @@
 .slickslide {
     display: none;
     position: absolute;
+    left: 10000px;
     width: inherit;
     height: inherit;
 }
 
-.slickslide:nth-of-type(3) {
+.slickslide:nth-of-type(1) {
     display: block;
+    left: 0;
 }
 
 .slickslide-header {
