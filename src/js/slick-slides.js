@@ -226,18 +226,44 @@ var slickSlides = {
 	},
 	//determine slide direction and animate
 	animateSlide:function( direction ){
-		//determine the direction
 		switch( direction ){
 			case 37:
-				this.controls.left = $( '.slickslide:eq(' + this.controls.current + ')' ).attr( 'data-slide-left' );
+				$( '.slickslide:eq(' + this.controls.current + ')' ).animate({
+					left: 10000
+				}, this.slides[this.controls.left].speed, function(){
+					$( '.slickslide:eq(' + slickSlides.controls.current + ')' ).hide();
+					slickSlides.controls.current = slickSlides.controls.left;
+					slickSlides.updateSlideControls( slickSlides.controls.current );
+				} );
+
+				$( '.slickslide:eq(' + this.controls.left + ')' ).show().animate({
+					left: 0
+				}, this.slides[this.controls.left].speed );
+				this.controls.current = this.controls.left;
 				break;
 			case 39:
-				this.controls.right = $( '.slickslide:eq(' + this.controls.current + ')' ).attr( 'data-slide-right' );
+				$( '.slickslide:eq(' + this.controls.current + ')' ).hide().animate({
+					left: -10000
+				}, this.slides[this.controls.right].speed, function(){
+					$( '.slickslide:eq(' + slickSlides.controls.current + ')' ).hide();
+					slickSlides.controls.current = slickSlides.controls.right;
+					slickSlides.updateSlideControls( slickSlides.controls.current );
+				} );
+
+				$( '.slickslide:eq(' + this.controls.right + ')' ).show().animate({
+					left: 0
+				}, this.slides[this.controls.right].speed );
 				break;
-
 		}
+	},
+	//updates slide control data
+	updateSlideControls:function( current ){
+		var slide = this.slides[current].directions;
 
-
+		if ( slide.left ) { this.controls.left = slide.left; }
+		if ( slide.right ) { this.controls.right = slide.right; }
+		if ( slide.up ) { this.controls.up = slide.up; }
+		if ( slide.down ) { this.controls.down = slide.down; }
 	}
 };
 
@@ -514,9 +540,7 @@ slickSlides.inheritSlide( SlickSlideCircular, SlickSlide );
 ==============================================================================================*/
 $(document).on('keydown', function(event){
 	event.preventDefault();
-
-
-
+	slickSlides.animateSlide( event.which );
 });
 
 /* Get the slide party started

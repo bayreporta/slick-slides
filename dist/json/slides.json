@@ -5,7 +5,7 @@
         "pretty_id": "title slide",
         "background_type": "color",
         "background_value": "#FFF",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 12,
         "slide_right": 1
     },
@@ -14,7 +14,7 @@
         "id": 1,
         "background_type": "color",
         "background_value": "#FFF",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 0,
         "slide_right": 2
     },
@@ -23,8 +23,8 @@
         "id": 2,
         "background_type": "color",
         "background_value": "#FFF",
-        "half_variants": "horizontal",
-        "transition_speed": 0.25,
+        "half_variants": "vertical",
+        "transition_speed": 300,
         "slide_left": 1,
         "slide_right": 3
     },
@@ -33,7 +33,7 @@
         "id": 3,
         "background_type": "color",
         "background_value": "#FFF",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 2,
         "slide_right": 4
     },
@@ -42,7 +42,7 @@
         "id": 4,
         "background_type": "color",
         "background_value": "#FFF",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 3,
         "slide_right": 5
     },
@@ -51,7 +51,7 @@
         "id": 5,
         "background_type": "color",
         "background_value": "#FFF",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 4,
         "slide_right": 6
     },
@@ -61,7 +61,7 @@
         "background_type": "color",
         "background_value": "#FFF",
         "half_variants": "horizontal",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 5,
         "slide_right": 7
     },
@@ -71,7 +71,7 @@
         "background_type": "color",
         "background_value": "#FFF",
         "half_variants": "horizontal",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 6,
         "slide_right": 8
     },
@@ -81,7 +81,7 @@
         "background_type": "color",
         "background_value": "#FFF",
         "half_variants": "horizontal",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 7,
         "slide_right": 9
     },
@@ -91,7 +91,7 @@
         "background_type": "color",
         "background_value": "#FFF",
         "half_variants": "horizontal",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 8,
         "slide_right": 10
     },
@@ -101,7 +101,7 @@
         "background_type": "color",
         "background_value": "#FFF",
         "half_variants": "horizontal",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 9,
         "slide_right": 11
     },
@@ -110,7 +110,7 @@
         "id": 11,
         "background_type": "color",
         "background_value": "#FFF",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 10,
         "slide_right": 12
     },
@@ -120,7 +120,7 @@
         "background_type": "color",
         "background_value": "#FFF",
         "half_variants": "horizontal",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 11,
         "slide_right": 13
     },
@@ -130,7 +130,7 @@
         "background_type": "color",
         "background_value": "#FFF",
         "half_variants": "horizontal",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 12,
         "slide_right": 14
     },
@@ -140,7 +140,7 @@
         "background_type": "color",
         "background_value": "#FFF",
         "half_variants": "horizontal",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 13,
         "slide_right": 15
     },
@@ -149,7 +149,7 @@
         "id": 15,
         "background_type": "color",
         "background_value": "#FFF",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 14,
         "slide_right": 16
     },
@@ -159,7 +159,7 @@
         "background_type": "color",
         "background_value": "#FFF",
         "half_variants": "horizontal",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 15,
         "slide_right": 17
     },
@@ -169,7 +169,7 @@
         "background_type": "color",
         "background_value": "#FFF",
         "half_variants": "horizontal",
-        "transition_speed": 0.25,
+        "transition_speed": 300,
         "slide_left": 16,
         "slide_right": 0
     }
