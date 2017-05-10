@@ -259,11 +259,10 @@ var slickSlides = {
 	//updates slide control data
 	updateSlideControls:function( current ){
 		var slide = this.slides[current].directions;
-
-		if ( slide.left ) { this.controls.left = slide.left; }
-		if ( slide.right ) { this.controls.right = slide.right; }
-		if ( slide.up ) { this.controls.up = slide.up; }
-		if ( slide.down ) { this.controls.down = slide.down; }
+		if ( slide.left || slide.left === 0 ) { this.controls.left = slide.left; }
+		if ( slide.right || slide.right === 0  ) { this.controls.right = slide.right; }
+		if ( slide.up || slide.up === 0 ) { this.controls.up = slide.up; }
+		if ( slide.down || slide.down === 0 ) { this.controls.down = slide.down; }
 	}
 };
 
@@ -437,7 +436,7 @@ SlickSlideHalf.prototype.buildChildElements = function( d ){
 				if ( d.half_segment_two_background !== undefined ) { slide += 'style="background-color: ' + d.half_segment_two_background + '"'; }
 				break;
 		}
-		
+
 		slide += '>';
 			switch(i){
 				case 0:
