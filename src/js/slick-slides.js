@@ -169,6 +169,14 @@ var slickSlides = {
 
 			//add any additional styles to the slide
 			slickSlides.slides[i].applyStyles();
+
+			//if first slide, initialize directional data
+			if ( i === 0 ){
+				slickSlides.controls.left = 	slickSlides.slides[0].directions.left;
+				slickSlides.controls.right = 	slickSlides.slides[0].directions.right;
+				slickSlides.controls.up = 		slickSlides.slides[0].directions.up;
+				slickSlides.controls.down = 	slickSlides.slides[0].directions.down;
+			}
 		}
 		
 	},	
@@ -221,9 +229,10 @@ var slickSlides = {
 		//determine the direction
 		switch( direction ){
 			case 37:
-
+				this.controls.left = $( '.slickslide:eq(' + this.controls.current + ')' ).attr( 'data-slide-left' );
 				break;
 			case 39:
+				this.controls.right = $( '.slickslide:eq(' + this.controls.current + ')' ).attr( 'data-slide-right' );
 				break;
 
 		}
