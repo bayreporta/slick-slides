@@ -54,6 +54,14 @@ var slickSlides = {
 	],
 	total_fonts: 	null,	/* total custom fonts */
 	data: 			{}, 	/* imported temporary data */
+	controls: 		{ 		/* stores variables for controlling slides */
+		current: 	0, 		/* current ID of slide */ 
+		left: 		null,   /* ID of slide to left */
+		right: 		null, 	/* ID of slide to right */
+		up: 		null, 	/* ID of slide above */
+		down: 		null 	/* ID of slide below */
+
+	},
 	
 	//passes parent slide class parameters down to all subclasses
 	inheritSlide:function( child, parent ){
@@ -161,6 +169,14 @@ var slickSlides = {
 
 			//add any additional styles to the slide
 			slickSlides.slides[i].applyStyles();
+
+			//if first slide, initialize directional data
+			if ( i === 0 ){
+				slickSlides.controls.left = 	slickSlides.slides[0].directions.left;
+				slickSlides.controls.right = 	slickSlides.slides[0].directions.right;
+				slickSlides.controls.up = 		slickSlides.slides[0].directions.up;
+				slickSlides.controls.down = 	slickSlides.slides[0].directions.down;
+			}
 		}
 		
 	},	
@@ -207,6 +223,46 @@ var slickSlides = {
 			//if there are special fonts, process them here
 			if ( slickSlides.total_fonts > 0 ) { slickSlides.configureFonts( slickSlides.data.fonts ); }
 		});
+	},
+	//determine slide direction and animate
+	animateSlide:function( direction ){
+		switch( direction ){
+			case 37:
+				$( '.slickslide:eq(' + this.controls.current + ')' ).animate({
+					left: 10000
+				}, this.slides[this.controls.left].speed, function(){
+					$( '.slickslide:eq(' + slickSlides.controls.current + ')' ).hide();
+					slickSlides.controls.current = slickSlides.controls.left;
+					slickSlides.updateSlideControls( slickSlides.controls.current );
+				} );
+
+				$( '.slickslide:eq(' + this.controls.left + ')' ).show().animate({
+					left: 0
+				}, this.slides[this.controls.left].speed );
+				this.controls.current = this.controls.left;
+				break;
+			case 39:
+				$( '.slickslide:eq(' + this.controls.current + ')' ).hide().animate({
+					left: -10000
+				}, this.slides[this.controls.right].speed, function(){
+					$( '.slickslide:eq(' + slickSlides.controls.current + ')' ).hide();
+					slickSlides.controls.current = slickSlides.controls.right;
+					slickSlides.updateSlideControls( slickSlides.controls.current );
+				} );
+
+				$( '.slickslide:eq(' + this.controls.right + ')' ).show().animate({
+					left: 0
+				}, this.slides[this.controls.right].speed );
+				break;
+		}
+	},
+	//updates slide control data
+	updateSlideControls:function( current ){
+		var slide = this.slides[current].directions;
+		if ( slide.left || slide.left === 0 ) { this.controls.left = slide.left; }
+		if ( slide.right || slide.right === 0  ) { this.controls.right = slide.right; }
+		if ( slide.up || slide.up === 0 ) { this.controls.up = slide.up; }
+		if ( slide.down || slide.down === 0 ) { this.controls.down = slide.down; }
 	}
 };
 
@@ -247,10 +303,10 @@ SlickSlide.prototype.buildSlide = function(){
 		slide 		= '<section class="slickslide" data-slide-id="' + this.id + '" ';
 
 	//add transition data 
-	if ( this.slide_left ) 	{ slide += 'data-slide-left="' + this.slide_left + '" '; }
-	if ( this.slide_right ) { slide += 'data-slide-right="' + this.slide_right + '" '; }
-	if ( this.slide_up ) 	{ slide += 'data-slide-up="' + this.slide_up + '" '; }
-	if ( this.slide_down ) 	{ slide += 'data-slide-down="' + this.slide_down + '" '; }
+	if ( this.directions.left ) 	{ slide += 'data-slide-left="' + this.directions.left + '" '; }
+	if ( this.directions.right ) 	{ slide += 'data-slide-right="' + this.directions.right + '" '; }
+	if ( this.directions.up ) 		{ slide += 'data-slide-up="' + this.directions.up + '" '; }
+	if ( this.directions.down ) 	{ slide += 'data-slide-down="' + this.directions.down + '" '; }
 
 	//finish closing initial section element
 	slide += '>';
@@ -373,14 +429,13 @@ SlickSlideHalf.prototype.buildChildElements = function( d ){
 
 		//background check
 		switch(i){
-			case 0:
-				if ( d.half_segment_one_background ) { slide += 'style="background-color: ' + d.half_segment_one_background + '"'; }
+			case 0:				
+				if ( d.half_segment_one_background !== undefined ) { slide += 'style="background-color: ' + d.half_segment_one_background + '"'; }
 				break;
 			case 1:
-				if ( d.half_segment_two_background ) { slide += 'style="background-color: ' + d.half_segment_two_background + '"'; }
+				if ( d.half_segment_two_background !== undefined ) { slide += 'style="background-color: ' + d.half_segment_two_background + '"'; }
 				break;
 		}
-
 
 		slide += '>';
 			switch(i){
@@ -478,6 +533,13 @@ function SlickSlideCircular( parentData, childData ){
 	
 }
 slickSlides.inheritSlide( SlickSlideCircular, SlickSlide );
+
+/* Watch for queues regarding 
+==============================================================================================*/
+$(document).on('keydown', function(event){
+	event.preventDefault();
+	slickSlides.animateSlide( event.which );
+});
 
 /* Get the slide party started
 ==============================================================================================*/

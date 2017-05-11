@@ -1,7 +1,7 @@
 [
     {
         "id": 2,
-        "variant": "horizontal",
+        "variant": "vertical",
         "half_segment_one_type": "empty",
         "half_segment_one_background": "#000",
         "half_segment_two_type": "text",
@@ -13,7 +13,7 @@
         "half_segment_one_type": "text",
         "half_segment_one_value": "“A middle finger,” he said. “Ah, can’t say that’s original.”",
         "half_segment_two_type": "empty",
-        "half_segment_one_background": "#000"
+        "half_segment_two_background": "#000"
     },
     {
         "id": 7,
@@ -37,7 +37,7 @@
         "half_segment_one_type": "text",
         "half_segment_one_value": "“No,” the cop smiled, “I’m not.” Radio traffic clattered from the cop’s walkie-talkie. He turned it down. “If the Governing Council can’t take a joke, screw ‘em.”",
         "half_segment_two_type": "empty",
-        "half_segment_one_background": "#000"
+        "half_segment_two_background": "#000"
     },
     {
         "id": 10,
@@ -61,7 +61,7 @@
         "half_segment_one_type": "text",
         "half_segment_one_value": "Ty’s eyes lit up. He felt a strong urge to run but the cop’s eyes looking at his told him to wait. Ty took an anxious breath.",
         "half_segment_two_type": "empty",
-        "half_segment_one_background": "#000"
+        "half_segment_two_background": "#000"
     },
     {
         "id": 14,
@@ -77,7 +77,7 @@
         "half_segment_one_type": "text",
         "half_segment_one_value": "It happened fast. Ty didn’t see Officer Steward whip out his sidearm and blast the Floating Eye in one graceful motion. As the smoking metal heap fell, Ty asked, “Why?”",
         "half_segment_two_type": "empty",
-        "half_segment_one_background": "#000"
+        "half_segment_two_background": "#000"
     },
     {
         "id": 17,
