@@ -287,14 +287,13 @@ SlickSlide.prototype.buildSlideElement = function( type, content ){
 };
 //apply any special styles to the slide as a whole, template based slides get their own treatment
 SlickSlide.prototype.applyStyles = function(){
-	console.log(this)
 	//background of slide
 	switch( this.background.type ){
 		case 'color':
 			$( '.slickslide:eq(' + this.id + ')' ).css( 'background-color', this.background.value );
 			break;
 	}
-}
+};
 
 /* Child objects based on slide templates
 ==============================================================================================*/
