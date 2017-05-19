@@ -228,31 +228,31 @@ var slickSlides = {
 	animateSlide:function( direction ){
 		switch( direction ){
 			case 37:
+				//current slide moves right
 				$( '.slickslide:eq(' + this.controls.current + ')' ).animate({
 					left: 10000
 				}, this.slides[this.controls.left].speed, function(){
-					$( '.slickslide:eq(' + slickSlides.controls.current + ')' ).hide();
+					$( '.slickslide:eq(' + slickSlides.controls.current + ')' ).hide().css('left', 0);
 					slickSlides.controls.current = slickSlides.controls.left;
 					slickSlides.updateSlideControls( slickSlides.controls.current );
+
 				} );
 
-				$( '.slickslide:eq(' + this.controls.left + ')' ).show().animate({
-					left: 0
-				}, this.slides[this.controls.left].speed );
-				this.controls.current = this.controls.left;
+				//next slide fades in
+				$( '.slickslide:eq(' + this.controls.left + ')' ).fadeIn(this.slides[this.controls.left].speed);
 				break;
 			case 39:
-				$( '.slickslide:eq(' + this.controls.current + ')' ).hide().animate({
+				//current slide moves left
+				$( '.slickslide:eq(' + this.controls.current + ')' ).animate({
 					left: -10000
 				}, this.slides[this.controls.right].speed, function(){
-					$( '.slickslide:eq(' + slickSlides.controls.current + ')' ).hide();
+					$( '.slickslide:eq(' + slickSlides.controls.current + ')' ).hide().css('left', 0);
 					slickSlides.controls.current = slickSlides.controls.right;
 					slickSlides.updateSlideControls( slickSlides.controls.current );
 				} );
 
-				$( '.slickslide:eq(' + this.controls.right + ')' ).show().animate({
-					left: 0
-				}, this.slides[this.controls.right].speed );
+				//next slide fades in
+				$( '.slickslide:eq(' + this.controls.right + ')' ).fadeIn(this.slides[this.controls.right].speed);
 				break;
 		}
 	},

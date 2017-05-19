@@ -2,6 +2,7 @@
 ==================================================*/
 .slickslides {
     position: relative;
+    overflow: hidden;
     width: 100%;
     height: 100%;
 }
@@ -9,7 +10,6 @@
 .slickslide {
     display: none;
     position: absolute;
-    left: 10000px;
     width: inherit;
     height: inherit;
 }

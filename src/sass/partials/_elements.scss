@@ -14,5 +14,13 @@
 }
 
 .slickslide-quote {
-    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include simple-transform( null, null, -50%, -50% );
+    width: 50%;
+
+    p {
+        font-size: 3rem;
+    }
 }
