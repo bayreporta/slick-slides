@@ -331,7 +331,14 @@ SlickSlide.prototype.buildSlideElement = function( type, content ){
 	//add elements based on type
 	switch( type ){
 		case 'text':
+			slide += '<p>' + content + '</p>';
+			break;
 		case 'quote':
+			var quotation = '<span class="slickslide-quotation">&#8220;</span>';
+
+			//replace the first and last quotation marks
+			content = content.replace( /(^"|^\u201C)/, quotation );
+
 			slide += '<p>' + content + '</p>';
 			break;
 	}

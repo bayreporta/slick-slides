@@ -20,6 +20,11 @@
     @include simple-transform( null, null, -50%, -50% );
     width: 50%;
 
+    .slickslide-quotation {
+	    font-size: 5rem;
+	    font-weight: 700;
+	}
+
     p {
         font-size: 3rem;
     }
